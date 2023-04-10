@@ -28,35 +28,39 @@ Serving the HTML pages.
 Testing the webserver
 
 ## PROGRAM:
-```html
-from http.server import HTTPserver, baseHTTPRequestHandler
+from http.server import HTTPServer,BaseHTTPRequestHandler
 
-
-content = """
+content='''
+<!doctype html>
 <html>
 <head>
+<title> My Web Server</title>
 </head>
 <body>
-<h1>Welcome to Saveetha Engineering College</h1>
+<h1>Top Five Web Application Development Frameworks</h1>
+<h2>1.Django</h2>
+<h2>2. MEAN Stack</h2>
+<h2>3. React </h2>
 </body>
 </html>
-"""
+'''
 
-class HelloHandler(baseHTTPRequestHandler):
+class MyServer(BaseHTTPRequestHandler):
     def do_GET(self):
-    self.send_response(200)
-    self.send_header('Content_type', 'text/html; charset=utf-8')
-    self.end_headers()
-    self.wfile.write(content.encode())
+        print("Get request received...")
+        self.send_response(200) 
+        self.send_header("content-type", "text/html")       
+        self.end_headers()
+        self.wfile.write(content.encode())
 
-
-server_address = ('', 80)
-httpd = HTTPserver(server_address,HelloHandler)
+print("This is my webserver") 
+server_address =('',8000)
+httpd = HTTPServer(server_address,MyServer)
 httpd.serve_forever()
-```
 
 ## OUTPUT:
-!['output'](/webserver.png)
+![webserver1](https://user-images.githubusercontent.com/120719634/230819484-ed955522-b9cd-4630-9bc6-4da7f740ac50.png)
+
 
 
 ## RESULT:
